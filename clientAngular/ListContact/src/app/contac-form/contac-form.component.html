@@ -1,0 +1,57 @@
+<h2 calss="mb-5">
+    @if(contact){
+        Editar Contacto}
+    @else{
+        Nuevo Contacto}
+</h2>
+<div class="row row-cols-3">
+ @if(contactForm){
+  <form [formGroup]="contactForm" (ngSubmit)="save()">
+    <div class="mb-3">
+        <label for="name" >Nombre</label>
+        <input type="text" class="form-control" id="name" 
+        name="name" placeholder="Nombre" formControlName="name" >
+        @if(contactForm.get('name')?.hasError('required')){
+            <div class="invalid-feedback d-block">El nombre es requerido</div>
+        }
+    </div>
+    <div class="mb-3">
+        <label for="lastname">Lastname</label>
+        <input type="lastname" class="form-control" id="lastname"
+         name="lastname" placeholder="Lastname" formControlName="lastname" >
+         @if (contactForm.get('lastname')?.hasError('required')) {
+            <div class="invalid-feedback d-block">El apellido es requerido</div>
+         }
+    </div>
+    <div class="mb-3">
+        <label for="phonenumber">Phonenumber</label>
+        <input type="phonenumber" class="form-control" id="phonenumber"
+         name="phonenumber" placeholder="phonenumber" formControlName="phonenumber" >
+         @if (contactForm.get('phonenumber')?.hasError('required')) {
+            <div class="invalid-feedback d-block">El Numero de telefono es requerido</div>
+         }
+    </div>
+    <div class="mb-3">
+        <label for="email">Email</label>
+        <input type="email" class="form-control" id="email"
+         name="email" placeholder="Email" formControlName="email" required="email">
+         @if (contactForm.get('email')?.hasError('required')) {
+            <div class="invalid-feedback d-block">El email es requerido</div>
+         }
+         @if (contactForm.get('email')?.hasError('email')) {
+            <div class="invalid-feedback d-block">El email es invalido</div>
+         }
+    </div>
+    
+    <div class="text-end">
+    <button type="button"class="btn btn-light" routerLink="/">Cancelar</button>
+    <button class="btn btn-primary ms-2">
+        @if(contact){
+            Editar}
+        @else{
+            Crear}
+    </button>
+    </div>
+  </form>
+    }
+</div>

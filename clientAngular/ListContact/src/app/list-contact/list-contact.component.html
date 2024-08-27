@@ -1,0 +1,43 @@
+<h1 class="mb-5">Mis Contactos</h1>
+
+     <div class="text-right">
+        <button class="btn btn-primary" routerLink="/new">
+            Nuevo Contacto
+        </button>
+     </div>
+
+     <table class="table table-hover">
+        <thead>
+            <tr>
+              <th>Id</th>
+              <th>Nombre</th>
+              <th>Apellido</th>
+              <th>Telefono</th>
+              <th>Email</th>
+              <th>Fecha Creacion</th>
+              <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @for(contact of contacts; track  contact.id){
+                <tr>
+                   <td>{{contact.id}}</td>
+                   <td>{{contact.name}}</td>
+                   <td>{{contact.lastname}}</td>
+                   <td>{{contact.phonenumber}}</td>
+                   <td>{{contact.email}}</td>
+                   <td>{{contact.createdAt | date:'dd/MM/yyyy hh:mm a' }}</td>
+                   <td class="text-end">
+                   <div class="btn-group">
+                      <td class="btn btn-primary" [routerLink]="['/', contact.id, 'edit']">
+                         Editar
+                      </td>
+                      <td class="btn btn-danger" (click)="deleteContact(contact)">
+                          Eliminar
+                      </td>
+                    </div>
+                     </td>
+                </tr>
+            }
+        </tbody>
+     </table>
